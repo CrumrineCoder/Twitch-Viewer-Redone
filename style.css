@@ -1,0 +1,23 @@
+/* entire document */
+body{
+  background:  #6441A4 ; 
+}
+
+/* twitch streamer */
+.logo{
+  max-width: 85px;
+  max-height: 85px; 
+}
+
+.textCenter{
+  text-align: center; 
+}
+table{
+  width: 600px; 
+  height: 85px; 
+  border: 3px solid white; 
+  color: white; 
+}
+img{
+  vertical-align: bottom; 
+}
