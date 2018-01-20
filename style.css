@@ -35,6 +35,14 @@ img{
   border:4px solid #6DB075;
 }
 
+.offline{
+  border:4px solid #E1CFCF;
+}
+
+.offline:hover{
+  border:4px solid #A89B9B;
+}
+
 .name, .game{
   font-size: 1.2em;
 }
@@ -44,4 +52,8 @@ img{
 
 .smallDetails{
   font-size: 12px; 
+}
+
+td{
+  border: 1px solid black;
 }
