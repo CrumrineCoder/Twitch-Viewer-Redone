@@ -1,59 +1,58 @@
 /* entire document */
-body{
-  background:  #6441A4 ; 
-    font-family: 'Roboto Mono', monospace;
+ body{
+     background: #6441A4 ;
+     font-family: 'Roboto Mono', monospace;
 }
-
-a{
-    text-decoration:  none;
+ a{
+     text-decoration: none;
 }
-/* twitch streamer */
-.online{
-
-  border:4px solid #8CE196;
-
+/* twitch streamer container*/
+ .container{
+     overflow:hidden;
+     word-wrap: break-word;
+     width: 400px;
+     color: #6441A4;
+     font-size: .9em;
+     background: white;
+	 text-align: center;
+	 margin: 0 auto; 
 }
-.online:hover{
-  border:4px solid #6DB075;
-  background: #DBFFE0;
+ .online{
+     border:4px solid #8CE196;
 }
-.container{
-  overflow:hidden;
-  word-wrap: break-word;
-   width: 600px; 
-  color: #6441A4; 
-  font-size: .9em; 
-  background: white; 
+ .online:hover{
+     border:4px solid #6DB075;
+     background: #DBFFE0;
 }
-.offline{
-
-  border:4px solid #E18C8C;
-
+ .offline{
+     border:4px solid #E18C8C;
 }
-.offline:hover{
-  border:4px solid #B06D6D;
-  background: #FFDBDB;
+ .offline:hover{
+     border:4px solid #B06D6D;
+     background: #FFDBDB;
 }
-
-.logo{
-  max-width:110px;
-  max-height: 110px; 
-  float: left; 
-  clear: left; 
-  margin-right: 5px; 
+/* twitch streamer inside container */
+/* top part*/
+ .logo{
+     max-width:80px;
+     max-height: 80px;
+     float: left;
+     clear: left;
+     margin-right: 5px;
 }
-.summary{
-  font-size: 18px; 
-  text-align: center; 
+ .summary{
+     font-size: 16px;
+     text-align: center;
 }
-.title{
-  font-size: 14px; 
+ .title{
+     font-size: 12px;
 }
-.smallDetails{
-  text-align: center; 
-  font-size: 12px; 
+/* bottom part */
+ .smallDetails{
+     text-align: center;
+     font-size: 10px;
 }
-
  .preview{
-  width: 600px; 
+     width: 400px;
 }
+ 

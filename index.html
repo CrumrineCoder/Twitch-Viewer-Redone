@@ -8,6 +8,7 @@
       <link rel="stylesheet" href="css/style.css">
    </head>
    <body ng-app="stream" ng-controller="streamController">
+  
       <span ng-repeat="Stream in Streams | orderBy: '!online'">
          <div class="container" id="{{Stream.name}}" ng-class="{true: 'online', false: 'offline'}[{{Stream.online}}]">
             <a href="{{Stream.url}}" target="_blank">
@@ -18,8 +19,8 @@
                <div class="smallDetails">
                   Followers: <span class="followers"> {{Stream.followers}} </span> Language: <span class="language"> {{Stream.language}}</span> Mature Only: <span class="mature"> {{Stream.mature}} </span>
                </div>
-            </a>
             <img class="preview" ng-src="{{Stream.preview}}"> </img>
+			</a>
          </div>
       </span>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
