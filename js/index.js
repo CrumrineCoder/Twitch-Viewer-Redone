@@ -1,7 +1,7 @@
 // Add each stream to an anchor point with the classes online/offline, mature/nonmature/ and its language
 // Add them with Angular. stream in Streams, have a new array
 // Refresh the streams every 5 minutes?
-var streamNames = ["Starladder5", "Resonance22", "FreeCodeCamp"];
+var streamNames = ["Jerma985", "ASKLJDFALJKSDF","BabaYetu_","Starladder5", "Resonance22", "TPangolin", "FreeCodeCamp", "VooblyOfficial"];
 var app = angular.module('stream', []);
 app.controller('streamController', function($scope) {
     $scope.Streams = [];
@@ -35,6 +35,7 @@ app.controller('streamController', function($scope) {
             type: "GET",
             url: "https://wind-bow.glitch.me/twitch-api/channels/" + name,
             success: function(data) {
+				if(data.status !="404"){
                 var obj = {
                     game: data.game,
                     language: data.broadcaster_language,
@@ -47,9 +48,11 @@ app.controller('streamController', function($scope) {
                     preview: data.video_banner,
                     title: data.status
                 }
+				
                 $scope.$apply(function() {
                     $scope.Streams.push(obj);
                 });
+				}
             }
         });
     }
