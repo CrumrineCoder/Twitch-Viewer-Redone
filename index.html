@@ -16,7 +16,18 @@
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.js'></script>
     <div ng-repeat="Stream in Streams">
-			{{Stream.name}}
+		<div class="container" id="{{Stream.name}}" ng-class="{true: 'online', false: 'offline'}[{{Stream.online}}]">
+			<a href="{{Stream.url}}" target="_blank">
+				<img class="logo" src="{{Stream.logo}}"></img>
+				<span class="summary"> {{Stream.name}} <div ng-show="{{Stream.online}}">is</div> <div ng-hide="{{Stream.online}}">was</div> playing {{Stream.game}} <div ng-show="{{Stream.online}}">for {{Stream.viewers}} viewers</div> </span>
+				<p class="title">{{Stream.title}}</p>
+				<hr>
+				<div class="smallDetails">
+					Followers: <span class="followers"> {{Stream.followers}} </span> Language: <span class="language"> {{Stream.language}}</span> Mature Only: <span class="mature"> {{Stream.mature}} </span>
+				</div>
+			</a>
+			<img class="preview" src="{{Stream.preview}}"> </img>
+		</div>
 	</div>
     <div class="online container">
         <a href="https://www.twitch.tv/resonance22" target="_blank">
