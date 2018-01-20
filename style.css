@@ -38,3 +38,10 @@ img{
 .name, .game{
   font-size: 1.2em;
 }
+.banner{
+  width: 600px; 
+}
+
+.smallDetails{
+  font-size: 12px; 
+}
