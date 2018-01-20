@@ -1,25 +1,53 @@
-<div class="online container">
-  <a href="https://www.twitch.tv/resonance22"  target="_blank">
-  <img class="logo" src="https://static-cdn.jtvnw.net/jtv_user_pictures/resonance22-profile_image-75da1beba67bbf6f-300x300.png"></img>
-  <p class="summary"> Resonance 22 is playing Counter Strike: Global Offensive for 999999 viewers </p>
-  <p class="title">12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p>
-  <hr>
-  <div class="smallDetails">
-    Followers: <span class="followers"> 20101 </span> Language: <span class="language"> EN</span> Mature Only: <span class="mature"> NO </span>
-  </div>
-  </a>
-  <img class="preview" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_resonance22-320x180.jpg"> </img>
-</div>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="offline container">
-    <a href="https://www.twitch.tv/resonance22"  target="_blank">
-  <img class="logo" src="https://static-cdn.jtvnw.net/jtv_user_pictures/resonance22-profile_image-75da1beba67bbf6f-300x300.png"></img>
-  <p class="summary"> Resonance 22 was playing Counter Strike: Global Offensive</p>
-  <p class="title">12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p>
-  <hr>
-  <div class="smallDetails">
-    Followers: <span class="followers"> 20101 </span> Language: <span class="language"> EN</span> Mature Only: <span class="mature"> NO </span>
-  </div>
-  </a>
-  <img class="preview" src="https://static-cdn.jtvnw.net/jtv_user_pictures/resonance22-channel_offline_image-340696133698af2f-1920x1080.png"> </img>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <title>Twitch Viewer Version 2</title>
+
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Varela+Round'>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body ng-app="stream" ng-controller="streamController">
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.js'></script>
+    <div ng-repeat="Stream in Streams">
+			{{Stream.name}}
+	</div>
+    <div class="online container">
+        <a href="https://www.twitch.tv/resonance22" target="_blank">
+            <img class="logo" src="https://static-cdn.jtvnw.net/jtv_user_pictures/resonance22-profile_image-75da1beba67bbf6f-300x300.png"></img>
+            <p class="summary"> Resonance 22 is playing Counter Strike: Global Offensive for 999999 viewers </p>
+            <p class="title">12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p>
+            <hr>
+            <div class="smallDetails">
+                Followers: <span class="followers"> 20101 </span> Language: <span class="language"> EN</span> Mature Only: <span class="mature"> NO </span>
+            </div>
+        </a>
+        <img class="preview" src="https://static-cdn.jtvnw.net/previews-ttv/live_user_resonance22-320x180.jpg"> </img>
+    </div>
+
+    <div class="offline container">
+        <a href="https://www.twitch.tv/resonance22" target="_blank">
+            <img class="logo" src="https://static-cdn.jtvnw.net/jtv_user_pictures/resonance22-profile_image-75da1beba67bbf6f-300x300.png"></img>
+            <p class="summary"> Resonance 22 was playing Counter Strike: Global Offensive</p>
+            <p class="title">12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p>
+            <hr>
+            <div class="smallDetails">
+                Followers: <span class="followers"> 20101 </span> Language: <span class="language"> EN</span> Mature Only: <span class="mature"> NO </span>
+            </div>
+        </a>
+        <img class="preview" src="https://static-cdn.jtvnw.net/jtv_user_pictures/resonance22-channel_offline_image-340696133698af2f-1920x1080.png"> </img>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>

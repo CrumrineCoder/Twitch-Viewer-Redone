@@ -1,0 +1,59 @@
+/* entire document */
+body{
+  background:  #6441A4 ; 
+    font-family: 'Roboto Mono', monospace;
+}
+
+a{
+    text-decoration:  none;
+}
+/* twitch streamer */
+.online{
+
+  border:4px solid #8CE196;
+
+}
+.online:hover{
+  border:4px solid #6DB075;
+  background: #DBFFE0;
+}
+.container{
+  overflow:hidden;
+  word-wrap: break-word;
+   width: 600px; 
+  color: #6441A4; 
+  font-size: .9em; 
+  background: white; 
+}
+.offline{
+
+  border:4px solid #E18C8C;
+
+}
+.offline:hover{
+  border:4px solid #B06D6D;
+  background: #FFDBDB;
+}
+
+.logo{
+  max-width:100px;
+  max-height: 100px; 
+  float: left; 
+  clear: left; 
+  margin-right: 5px; 
+}
+.summary{
+  font-size: 18px; 
+  text-align: center; 
+}
+.title{
+  font-size: 14px; 
+}
+.smallDetails{
+  text-align: center; 
+  font-size: 12px; 
+}
+
+ .preview{
+  width: 600px; 
+}
