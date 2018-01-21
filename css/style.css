@@ -6,8 +6,29 @@
  a{
      text-decoration: none;
 }
+button:focus {outline:0;}
 /* Search bar */
-
+.formInline{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	margin-bottom: 10px;
+}
+#searchBar{
+	width: 400px; 
+	height: 25px; 
+}
+#searchButton{
+	border: none; 
+	height: 29px;  
+	width: 40px; 
+	background: white; 
+	color: black; 
+}
+#searchButton:hover{
+	background: #432B6E;
+	color: white; 
+}
 /* twitch streamer container*/
  .container{
      overflow:hidden;
