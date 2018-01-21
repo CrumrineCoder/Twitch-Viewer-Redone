@@ -1,6 +1,6 @@
 // Allow users to see a condensed view with ng-repeat that will not show the preview or the small details
 // Search bar
-// Get the value from the user. Get the data. Push the obj into the array and sort it. 
+// Get the data. Push the obj into the array and sort it. 
 // All, Online, Offline
 // Mature Only
 // Language select
@@ -20,8 +20,16 @@ app.controller('streamController', function($scope) {
 	$('#twitchSearch').submit(function(e) {
 		e.preventDefault();
 		var searchValue = $("#searchBar").val();
-		console.log("Test"); 
-		console.log(searchValue); 
+		 $.ajax({
+                type: "GET",
+                url: 'https://api.twitch.tv/kraken/streams/' + searchValue,
+                headers: {
+                    "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
+                },
+                success: function(data) {
+                    displayStreams(searchValue, data);
+                }
+         });
 	});
     function displayStreams(name, data) {
         if (data.stream) {
