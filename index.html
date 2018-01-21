@@ -9,9 +9,9 @@
    </head>
    <body ng-app="stream" ng-controller="streamController">
         <label>Online</label>
-        <input  type="checkbox" ng-model="Filter.online.true" ng-true-value=true  ng-false-value=false />&nbsp;
+        <input  type="checkbox" ng-model="Filter.online.true" ng-true-value=true  ng-false-value=!true />&nbsp;
         <label>Offline</label>
-        <input  type="checkbox" ng-model="Filter.online.false" ng-true-value=false  ng-false-value=true />&nbsp;
+        <input  type="checkbox" ng-model="Filter.online.false" ng-true-value=false  ng-false-value=!false />&nbsp;
       <form id="twitchSearch" class="formInline">
          <input  placeholder="Search for streams." type="text" id="searchBar">
          <button id="searchButton" type="submit"><span class="fa fa-search"></span></button>
