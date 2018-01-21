@@ -8,11 +8,15 @@
       <link rel="stylesheet" href="css/style.css">
    </head>
    <body ng-app="stream" ng-controller="streamController">
+        <label>Online</label>
+        <input  type="checkbox" ng-model="Filter.online.true" ng-true-value=true  ng-false-value=false />&nbsp;
+        <label>Offline</label>
+        <input  type="checkbox" ng-model="Filter.online.false" ng-true-value=false  ng-false-value=true />&nbsp;
       <form id="twitchSearch" class="formInline">
          <input  placeholder="Search for streams." type="text" id="searchBar">
          <button id="searchButton" type="submit"><span class="fa fa-search"></span></button>
       </form>
-      <span ng-repeat="Stream in Streams | orderBy: '!online'" >
+      <span ng-repeat="Stream in Streams | searchFilter:Filter.online | orderBy: '!online'" >
          <div class="container" id="{{Stream.name}}" ng-class="{true: 'online', false: 'offline'}[{{Stream.online}}]">
             <a href="{{Stream.url}}" target="_blank">
                <img class="logo" ng-src="{{Stream.logo}}"></img>

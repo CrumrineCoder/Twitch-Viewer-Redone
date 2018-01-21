@@ -1,11 +1,10 @@
 // Allow users to see a condensed view with ng-repeat that will not show the preview or the small details
-// Search bar
-// Get the data. Push the obj into the array and sort it. 
+// Remove button
 // All, Online, Offline
 // Mature Only
 // Language select
 // Refresh the streams every 5 minutes? Reload button as well.
-var streamNames = ["Jerma985", "BabaYetu_", "Starladder5", "Resonance22", "TPangolin", "FreeCodeCamp", "VooblyOfficial"];
+var streamNames = [ "FreeCodeCamp", "Jerma985", "DDRJake", "handmade_hero"];
 var app = angular.module('stream', []);
 
 function compare(a, b) {
@@ -17,6 +16,13 @@ function compare(a, b) {
 
 app.controller('streamController', function($scope) {
     $scope.Streams = [];
+	$scope.Filter = new Object();
+	$scope.Filter.online = {
+		true: true, 
+		false: false
+    };
+	$scope.OrderFilter = 'online';
+	console.log($scope.Filter);
 	$('#twitchSearch').submit(function(e) {
 		e.preventDefault();
 		var searchValue = $("#searchBar").val();
@@ -55,7 +61,7 @@ app.controller('streamController', function($scope) {
         }
     }
     getStreamData();
-
+	
     function getOfflineStreamData(name) {
         $.ajax({
             type: "GET",
@@ -99,4 +105,39 @@ app.controller('streamController', function($scope) {
             });
         });
     }
+});
+
+
+app.filter('searchFilter', function($filter) {
+  return function(items, searchfilter) {
+    var isSearchFilterEmpty = true;
+    angular.forEach(searchfilter, function(searchstring) {
+      if (searchstring != null && searchstring != "") {
+        isSearchFilterEmpty = false;
+      }
+    });
+    if (!isSearchFilterEmpty) {
+      var result = [];
+      angular.forEach(items, function(item) {
+        var isFound = false;
+        angular.forEach(item, function(term, key) {
+          if (term != null && !isFound) {
+            term = term.toString();
+            term = term.toLowerCase();
+            angular.forEach(searchfilter, function(searchstring) {
+            console.log(searchstring);
+   
+              if (searchstring != "" && term.indexOf(searchstring) != -1 && !isFound) {
+                result.push(item);
+                isFound = true;
+              }
+            });
+          }
+        });
+      });
+      return result;
+    } else {
+      return items;
+    }
+  }
 });
