@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <title>Twitch Viewer Version 2</title>
-      <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
-      <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Varela+Round'>
-      <link rel="stylesheet" href="css/style.css">
-   </head>
-   <body ng-app="stream" ng-controller="streamController">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Twitch Viewer Version 2</title>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+	    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Varela+Round'>
+    <link rel="stylesheet" href="css/style.css"> </head>
+
+<body ng-app="stream" ng-controller="streamController"> 
+<form id="twitchSearch" class="form-inline">
+      <input  placeholder="Search for streams." type="text">
+        <button class="	" type="button"><span class="fa fa-search"></span></button>
   
-      <span ng-repeat="Stream in Streams | orderBy: '!online'">
+
+</form>
+	<span ng-repeat="Stream in Streams | orderBy: '!online'" >
          <div class="container" id="{{Stream.name}}" ng-class="{true: 'online', false: 'offline'}[{{Stream.online}}]">
             <a href="{{Stream.url}}" target="_blank">
                <img class="logo" ng-src="{{Stream.logo}}"></img>
                <span class="summary"> {{Stream.name}} <span ng-show="{{Stream.online}}">is</span> <span ng-hide="{{Stream.online}}">was</span> playing {{Stream.game}} <span ng-show="{{Stream.online}}">for {{Stream.viewers}} viewers</span> </span>
-               <p class="title">{{Stream.title}}</p>
-               <hr>
-               <div class="smallDetails">
-                  Followers: <span class="followers"> {{Stream.followers}} </span> Language: <span class="language"> {{Stream.language}}</span> Mature Only: <span class="mature"> {{Stream.mature}} </span>
-               </div>
-            <img class="preview" ng-src="{{Stream.preview}}"> </img>
-			</a>
-         </div>
-      </span>
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.js'></script>
-      <script src="js/index.js"></script>
-   </body>
+    <p class="title">{{Stream.title}}</p>
+    <hr>
+    <div class="smallDetails"> Followers: <span class="followers"> {{Stream.followers}} </span> Language: <span class="language"> {{Stream.language}}</span> Mature Only: <span class="mature"> {{Stream.mature}} </span> </div> <img class="preview" ng-src="{{Stream.preview}}"> </img>
+    </a>
+    </div>
+    </span>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.js'></script>
+    <script src="js/index.js"></script>
+</body>
+
 </html>

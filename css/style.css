@@ -6,11 +6,13 @@
  a{
      text-decoration: none;
 }
+/* Search bar */
+
 /* twitch streamer container*/
  .container{
      overflow:hidden;
      word-wrap: break-word;
-     width: 400px;
+     width: 660px;
      color: #6441A4;
      font-size: .9em;
      background: white;
@@ -53,6 +55,6 @@
      font-size: 10px;
 }
  .preview{
-     width: 400px;
+     width: 660px;
 }
  
