@@ -10,7 +10,7 @@
    <body ng-app="stream" ng-controller="streamController">
       <form id="twitchSearch" class="formInline">
          <input  placeholder="Search for streams." type="text" id="searchBar">
-         <button id="searchButton" type="button"><span class="fa fa-search"></span></button>
+         <button id="searchButton" type="submit"><span class="fa fa-search"></span></button>
       </form>
       <span ng-repeat="Stream in Streams | orderBy: '!online'" >
          <div class="container" id="{{Stream.name}}" ng-class="{true: 'online', false: 'offline'}[{{Stream.online}}]">

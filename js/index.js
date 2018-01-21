@@ -13,9 +13,16 @@ function compare(a, b) {
     if (a.followers > b.followers) return -1;
     return 0;
 }
+
+
 app.controller('streamController', function($scope) {
     $scope.Streams = [];
-
+	$('#twitchSearch').submit(function(e) {
+		e.preventDefault();
+		var searchValue = $("#searchBar").val();
+		console.log("Test"); 
+		console.log(searchValue); 
+	});
     function displayStreams(name, data) {
         if (data.stream) {
             var obj = {
