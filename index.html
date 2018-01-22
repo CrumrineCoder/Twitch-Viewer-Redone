@@ -8,7 +8,7 @@
       <link rel="stylesheet" href="css/style.css">
    </head>
    <body ng-app="stream" ng-controller="streamController">
-  
+ 
       <form id="twitchSearch" class="formInline">
          <input  placeholder="Search for streams." type="text" id="searchBar">
          <button id="searchButton" type="submit"><span class="fa fa-search"></span></button>
@@ -18,6 +18,7 @@
 		<button class="statusButtons" id="onlineButton" onclick="onlineOnly();"> Online Only</button> 
 		<button class="statusButtons" id="offlineButton" onclick="offlineOnly();"> Offline Only</button> 	
 	  </div>
+	   <button ng-click="Condensed = !Condensed" id="condenseButton"> Toggle Preview </button>
       <span ng-repeat="Stream in Streams | orderBy: '!online'" >
 	
          <div class="container" id="{{Stream.name}}" ng-class="{'online': Stream.status == 'online', 'offline': Stream.status == 'offline' }">
@@ -29,7 +30,7 @@
                <p class="title">{{Stream.title}}</p>   
                <hr>
                <div class="smallDetails"> Followers: <span class="followers"> {{Stream.followers}} </span> Language: <span class="language"> {{Stream.language}}</span> Mature Only: <span class="mature"> {{Stream.mature}} </span> </div>
-               <img class="preview" ng-src="{{Stream.preview}}"> </img>
+               <img ng-hide="Condensed" class="preview" ng-src="{{Stream.preview}}"> </img>
             </a>
 		
          </div>

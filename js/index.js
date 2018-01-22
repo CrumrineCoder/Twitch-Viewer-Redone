@@ -1,5 +1,4 @@
 // Allow users to see a condensed view with ng-repeat that will not show the preview or the small details
-// Remove button
 // Refresh the streams every 5 minutes? Reload button as well.
 var streamNames = ["Jerma985", "BabaYetu_", "TrumpSC"];
 var app = angular.module('stream', []);
@@ -45,10 +44,13 @@ function showAll() {
     $('#offlineButton').removeClass('active');
 	$('#allButton').addClass('active');
 	display = 'all';
-	
 }
+
+
 app.controller('streamController', function($scope) {
     $scope.Streams = [];
+	$scope.Condensed = false; 
+	
     $('#twitchSearch').submit(function(e) {
         e.preventDefault();
         var searchValue = $("#searchBar").val();
