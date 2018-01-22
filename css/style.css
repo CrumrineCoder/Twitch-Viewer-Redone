@@ -83,6 +83,16 @@ button:focus {outline:0;}
 }
 /* twitch streamer inside container */
 /* top part*/
+.delete{
+	float: right; 
+	color: #CF1515;
+	border: 1px solid #CF1515; 
+	background: #D99898; 
+}
+.delete:hover{
+	background: #CF1515;
+	color: white; 
+}
  .logo{
      max-width:80px;
      max-height: 80px;

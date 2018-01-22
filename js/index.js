@@ -1,10 +1,7 @@
 // Allow users to see a condensed view with ng-repeat that will not show the preview or the small details
 // Remove button
-// All, Online, Offline
-// Mature Only
-// Language select
 // Refresh the streams every 5 minutes? Reload button as well.
-var streamNames = ["Jerma985", "BabaYetu_", "JtgTv"];
+var streamNames = ["Jerma985", "BabaYetu_", "TrumpSC"];
 var app = angular.module('stream', []);
 var display = 'all';
 
@@ -67,7 +64,10 @@ app.controller('streamController', function($scope) {
             }
         });
     });
-
+	$scope.remove = function(item) { 
+		var index = $scope.Streams.indexOf(item);
+		$scope.Streams.splice(index, 1);     
+	}
     function displayStreams(name, data) {
         if (data.stream) {
             var obj = {

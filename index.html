@@ -19,15 +19,19 @@
 		<button class="statusButtons" id="offlineButton" onclick="offlineOnly();"> Offline Only</button> 	
 	  </div>
       <span ng-repeat="Stream in Streams | orderBy: '!online'" >
+	
          <div class="container" id="{{Stream.name}}" ng-class="{'online': Stream.status == 'online', 'offline': Stream.status == 'offline' }">
+		 	<button class="delete fa fa-times" ng-click="remove(Stream)"></button>
             <a href="{{Stream.url}}" target="_blank">
                <img class="logo" ng-src="{{Stream.logo}}"></img>
-               <span class="summary"> {{Stream.name}} <span ng-show="{{Stream.status == 'online'}}">is</span> <span ng-hide="{{Stream.status == 'online'}}">was</span> playing {{Stream.game}} <span ng-show="{{Stream.status == 'online'}}">for {{Stream.viewers}} viewers</span> </span>
-               <p class="title">{{Stream.title}}</p>
+			  
+               <span class="summary"> {{Stream.name}} <span ng-show="{{Stream.status == 'online'}}">is</span> <span ng-hide="{{Stream.status == 'online'}}">was</span> playing {{Stream.game}} <span ng-show="{{Stream.status == 'online'}}">for {{Stream.viewers}} viewers</span> </span> 
+               <p class="title">{{Stream.title}}</p>   
                <hr>
                <div class="smallDetails"> Followers: <span class="followers"> {{Stream.followers}} </span> Language: <span class="language"> {{Stream.language}}</span> Mature Only: <span class="mature"> {{Stream.mature}} </span> </div>
                <img class="preview" ng-src="{{Stream.preview}}"> </img>
             </a>
+		
          </div>
       </span>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
