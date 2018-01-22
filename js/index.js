@@ -1,50 +1,60 @@
 // Allow users to see a condensed view with ng-repeat that will not show the preview or the small details
-// Search bar
-// Get the data. Push the obj into the array and sort it. 
-// All, Online, Offline
 // Mature Only
 // Language select
 // Refresh the streams every 5 minutes? Reload button as well.
-var streamNames = ["Jerma985", "BabaYetu_", "Starladder5", "Resonance22", "TPangolin", "FreeCodeCamp", "VooblyOfficial"];
+var streamNames = ["Jerma985", "BabaYetu_"];
 var app = angular.module('stream', []);
+var display = 'all';
 
 function compare(a, b) {
     if (a.followers < b.followers) return 1;
     if (a.followers > b.followers) return -1;
     return 0;
 }
-function onlineOnly(){
-	$('.online').show();
-	$('.offline').hide();
-}
-function offlineOnly(){
-	$('.offline').show();
-	$('.online').hide();
-}
 
-function showAll(){
-	console.log("hey"); 
-	$('.online').show();
-	$('.offline').show();
+function containsObject(obj, list) {
+    for (var i = 0; i < list.length; i++) {
+        if (list[i].name === obj.name) {
+            return true;
+        } else {}
+    }
+    return false;
 }
 
+function onlineOnly() {
+    $('.online').show();
+    $('.offline').hide();
+    display = 'online';
+}
 
+function offlineOnly() {
+    $('.offline').show();
+    $('.online').hide();
+    display = 'offline';
+}
+
+function showAll() {
+    $('.online').show();
+    $('.offline').show();
+    display = 'all';
+}
 app.controller('streamController', function($scope) {
     $scope.Streams = [];
-	$('#twitchSearch').submit(function(e) {
-		e.preventDefault();
-		var searchValue = $("#searchBar").val();
-		 $.ajax({
-                type: "GET",
-                url: 'https://api.twitch.tv/kraken/streams/' + searchValue,
-                headers: {
-                    "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
-                },
-                success: function(data) {
-                    displayStreams(searchValue, data);
-                }
-         });
-	});
+    $('#twitchSearch').submit(function(e) {
+        e.preventDefault();
+        var searchValue = $("#searchBar").val();
+        $.ajax({
+            type: "GET",
+            url: 'https://api.twitch.tv/kraken/streams/' + searchValue,
+            headers: {
+                "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
+            },
+            success: function(data) {
+                displayStreams(searchValue, data);
+            }
+        });
+    });
+
     function displayStreams(name, data) {
         if (data.stream) {
             var obj = {
@@ -60,10 +70,18 @@ app.controller('streamController', function($scope) {
                 preview: data.stream.preview.large,
                 title: data.stream.channel.status
             };
-            $scope.$apply(function() {
-                $scope.Streams.push(obj);
-                $scope.Streams.sort(compare);
-            });
+            if (!containsObject(obj, $scope.Streams)) {
+                $scope.$apply(function() {
+                    $scope.Streams.push(obj);
+                    $scope.Streams.sort(compare);
+                });
+                if (display == 'offline') {
+                    alert("Stream added, but only are showing Offline streams so it is not currently visible");
+                    offlineOnly();
+                }
+            } else {
+               alert("Stream is already added.");
+            }
         } else {
             getOfflineStreamData(name);
         }
@@ -88,10 +106,18 @@ app.controller('streamController', function($scope) {
                         preview: data.video_banner,
                         title: data.status
                     }
-                    $scope.$apply(function() {
-                        $scope.Streams.push(obj);
-                        $scope.Streams.sort(compare);
-                    });
+                    if (!containsObject(obj, $scope.Streams)) {
+                        $scope.$apply(function() {
+                            $scope.Streams.push(obj);
+                            $scope.Streams.sort(compare);
+                        });
+                        if (display == 'online') {
+                            alert("Stream added, but only are showing Online streams so it is not currently visible");
+                            onlineOnly();
+                        }
+                    } else {
+                       alert("Stream is already added.");
+                    }
                 } else {
                     alert("Streamer not found. Search again.");
                 }
