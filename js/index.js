@@ -16,7 +16,6 @@ function compare(a, b) {
 
 app.controller('streamController', function($scope) {
     $scope.Streams = [];
-	
 	$('#twitchSearch').submit(function(e) {
 		e.preventDefault();
 		var searchValue = $("#searchBar").val();
@@ -40,13 +39,12 @@ app.controller('streamController', function($scope) {
                 name: data.stream.channel.display_name,
                 followers: data.stream.channel.followers,
                 logo: data.stream.channel.logo,
-               
-                status: "online",
+                mature: data.stream.channel.mature,
+                online: true,
                 url: data.stream.channel.url,
                 preview: data.stream.preview.large,
                 title: data.stream.channel.status
             };
-			console.log(obj);
             $scope.$apply(function() {
                 $scope.Streams.push(obj);
                 $scope.Streams.sort(compare);
@@ -69,13 +67,12 @@ app.controller('streamController', function($scope) {
                         name: data.display_name,
                         followers: data.followers,
                         logo: data.logo,
-                       
-                        status: "offline",
+                        mature: data.mature,
+                        online: false,
                         url: data.url,
                         preview: data.video_banner,
                         title: data.status
                     }
-					console.log(obj);
                     $scope.$apply(function() {
                         $scope.Streams.push(obj);
                         $scope.Streams.sort(compare);
