@@ -8,6 +8,9 @@
       <link rel="stylesheet" href="css/style.css">
    </head>
    <body ng-app="stream" ng-controller="streamController">
+   <button onclick="onlineOnly();"> Online Only</button> 
+   <button onclick="offlineOnly();"> Offline Only</button> 
+   <button onclick="showAll()"> All</button>
       <form id="twitchSearch" class="formInline">
          <input  placeholder="Search for streams." type="text" id="searchBar">
          <button id="searchButton" type="submit"><span class="fa fa-search"></span></button>

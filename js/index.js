@@ -13,6 +13,20 @@ function compare(a, b) {
     if (a.followers > b.followers) return -1;
     return 0;
 }
+function onlineOnly(){
+	$('.online').show();
+	$('.offline').hide();
+}
+function offlineOnly(){
+	$('.offline').show();
+	$('.online').hide();
+}
+
+function showAll(){
+	console.log("hey"); 
+	$('.online').show();
+	$('.offline').show();
+}
 
 
 app.controller('streamController', function($scope) {
