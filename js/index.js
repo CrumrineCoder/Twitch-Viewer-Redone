@@ -5,7 +5,7 @@
 // Language select
 // Refresh the streams every 5 minutes? Reload button as well.
 var streamNames = ["FreeCodeCamp", "Jerma985", "DDRJake", "handmade_hero"];
-var app = angular.module('stream', []);
+var app = angular.module('stream', ['ngMaterial']);
 
 function compare(a, b) {
     if (a.followers < b.followers) return 1;
