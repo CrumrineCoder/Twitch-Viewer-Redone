@@ -29,6 +29,33 @@ button:focus {outline:0;}
 	background: #432B6E;
 	color: white; 
 }
+/* Status Buttons */
+#statusButtonContainer{
+	margin: 0 auto; 
+	text-align: center; 
+	margin-bottom: 10px; 
+}
+.statusButtons{
+	background: #432B6E;
+	color: white; 
+	border: none; 
+	font-size: 14px; 
+	padding: 5px; 
+	opacity: .6; 
+	width: 100px; 
+}
+.active{
+	opacity: 1; 
+}
+#allButton{
+	border-top: 3px solid white;
+}
+#onlineButton{
+	border-top: 3px solid #44CF59;
+}
+#offlineButton{
+	border-top: 3px solid #CF4444;
+}
 /* twitch streamer container*/
  .container{
      overflow:hidden;

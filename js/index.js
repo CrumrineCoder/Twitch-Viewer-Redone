@@ -1,8 +1,10 @@
 // Allow users to see a condensed view with ng-repeat that will not show the preview or the small details
+// Remove button
+// All, Online, Offline
 // Mature Only
 // Language select
 // Refresh the streams every 5 minutes? Reload button as well.
-var streamNames = ["Jerma985", "BabaYetu_"];
+var streamNames = ["Jerma985", "BabaYetu_", "JtgTv"];
 var app = angular.module('stream', []);
 var display = 'all';
 
@@ -24,19 +26,29 @@ function containsObject(obj, list) {
 function onlineOnly() {
     $('.online').show();
     $('.offline').hide();
+	$('#onlineButton').addClass('active');
+    $('#offlineButton').removeClass('active');
+	$('#allButton').removeClass('active');
     display = 'online';
 }
 
 function offlineOnly() {
     $('.offline').show();
     $('.online').hide();
+	$('#onlineButton').removeClass('active');
+    $('#offlineButton').addClass('active');
+	$('#allButton').removeClass('active');
     display = 'offline';
 }
 
 function showAll() {
     $('.online').show();
     $('.offline').show();
-    display = 'all';
+    $('#onlineButton').removeClass('active');
+    $('#offlineButton').removeClass('active');
+	$('#allButton').addClass('active');
+	display = 'all';
+	
 }
 app.controller('streamController', function($scope) {
     $scope.Streams = [];
@@ -51,6 +63,7 @@ app.controller('streamController', function($scope) {
             },
             success: function(data) {
                 displayStreams(searchValue, data);
+				
             }
         });
     });

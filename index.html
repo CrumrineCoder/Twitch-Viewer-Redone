@@ -8,13 +8,16 @@
       <link rel="stylesheet" href="css/style.css">
    </head>
    <body ng-app="stream" ng-controller="streamController">
-   <button onclick="onlineOnly();"> Online Only</button> 
-   <button onclick="offlineOnly();"> Offline Only</button> 
-   <button onclick="showAll()"> All</button>
+  
       <form id="twitchSearch" class="formInline">
          <input  placeholder="Search for streams." type="text" id="searchBar">
          <button id="searchButton" type="submit"><span class="fa fa-search"></span></button>
       </form>
+	  <div id="statusButtonContainer">
+		<button  class="statusButtons active" id="allButton" onclick="showAll()"> All</button>
+		<button class="statusButtons" id="onlineButton" onclick="onlineOnly();"> Online Only</button> 
+		<button class="statusButtons" id="offlineButton" onclick="offlineOnly();"> Offline Only</button> 	
+	  </div>
       <span ng-repeat="Stream in Streams | orderBy: '!online'" >
          <div class="container" id="{{Stream.name}}" ng-class="{'online': Stream.status == 'online', 'offline': Stream.status == 'offline' }">
             <a href="{{Stream.url}}" target="_blank">
