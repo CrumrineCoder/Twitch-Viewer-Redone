@@ -17,11 +17,11 @@ function compare(a, b) {
 app.controller('streamController', function($scope) {
     $scope.Streams = [];
 	$scope.Filter = new Object();
-  $scope.Filter.online = {
-    true: true, 
-    false: false
+  $scope.Filter.status = {
+    "online": "online", 
+    "offline": "offline"
   };
-
+ $scope.OrderFilter = 'status';
 	$('#twitchSearch').submit(function(e) {
 		e.preventDefault();
 		var searchValue = $("#searchBar").val();
@@ -45,12 +45,13 @@ app.controller('streamController', function($scope) {
                 name: data.stream.channel.display_name,
                 followers: data.stream.channel.followers,
                 logo: data.stream.channel.logo,
-                mature: data.stream.channel.mature,
-                online: true,
+               
+                status: "online",
                 url: data.stream.channel.url,
                 preview: data.stream.preview.large,
                 title: data.stream.channel.status
             };
+			console.log(obj);
             $scope.$apply(function() {
                 $scope.Streams.push(obj);
                 $scope.Streams.sort(compare);
@@ -73,12 +74,13 @@ app.controller('streamController', function($scope) {
                         name: data.display_name,
                         followers: data.followers,
                         logo: data.logo,
-                        mature: data.mature,
-                        online: false,
+                       
+                        status: "offline",
                         url: data.url,
                         preview: data.video_banner,
                         title: data.status
                     }
+					console.log(obj);
                     $scope.$apply(function() {
                         $scope.Streams.push(obj);
                         $scope.Streams.sort(compare);

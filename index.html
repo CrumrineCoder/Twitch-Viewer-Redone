@@ -8,19 +8,21 @@
       <link rel="stylesheet" href="css/style.css">
    </head>
    <body ng-app="stream" ng-controller="streamController">
+   
         <label>Online</label>
-        <input  type="checkbox" ng-model="Filter.online.true" ng-true-value=true  ng-false-value=!true />&nbsp;
+        <input  type="checkbox" ng-model="Filter.status.online" ng-true-value=online  ng-false-value=!online />
         <label>Offline</label>
-        <input  type="checkbox" ng-model="Filter.online.false" ng-true-value=false  ng-false-value=!false />&nbsp;
+        <input  type="checkbox" ng-model="Filter.status.offline" ng-true-value=offline  ng-false-value=!offline />
       <form id="twitchSearch" class="formInline">
          <input  placeholder="Search for streams." type="text" id="searchBar">
          <button id="searchButton" type="submit"><span class="fa fa-search"></span></button>
       </form>
-      <span ng-repeat="Stream in Streams | searchFilter:Filter.online | orderBy: '!online'" >
-         <div class="container" id="{{Stream.name}}" ng-class="{true: 'online', false: 'offline'}[{{Stream.online}}]">
+      <span ng-repeat="Stream in Streams | searchFilter:Filter.status | orderBy: !OrderFilter" >
+	  {{Stream.status}}
+         <div class="container" id="{{Stream.name}}" ng-class="{{Stream.status}}">
             <a href="{{Stream.url}}" target="_blank">
                <img class="logo" ng-src="{{Stream.logo}}"></img>
-               <span class="summary"> {{Stream.name}} <span ng-show="{{Stream.online}}">is</span> <span ng-hide="{{Stream.online}}">was</span> playing {{Stream.game}} <span ng-show="{{Stream.online}}">for {{Stream.viewers}} viewers</span> </span>
+               <span class="summary"> {{Stream.name}} <span ng-show="{{Stream.status}}">is</span> <span ng-hide="{{Stream.status}}">was</span> playing {{Stream.game}} <span ng-show="{{Stream.status}}">for {{Stream.viewers}} viewers</span> </span>
                <p class="title">{{Stream.title}}</p>
                <hr>
                <div class="smallDetails"> Followers: <span class="followers"> {{Stream.followers}} </span> Language: <span class="language"> {{Stream.language}}</span> Mature Only: <span class="mature"> {{Stream.mature}} </span> </div>
