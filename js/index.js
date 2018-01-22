@@ -16,12 +16,14 @@ function compare(a, b) {
 
 app.controller('streamController', function($scope) {
     $scope.Streams = [];
-	$scope.Filter = new Object();
-  $scope.Filter.status = {
-    "online": "online", 
-    "offline": "offline"
-  };
- $scope.OrderFilter = 'status';
+	// Filter defaults
+    $scope.Filter = new Object();
+    $scope.Filter.status = {'online':'online',
+                            'offline':'offline'
+                        };
+    // Default order
+    $scope.OrderFilter = 'status';
+	/*
 	$('#twitchSearch').submit(function(e) {
 		e.preventDefault();
 		var searchValue = $("#searchBar").val();
@@ -105,7 +107,7 @@ app.controller('streamController', function($scope) {
                 }
             });
         });
-    }
+    } */
 });
 
 /*
