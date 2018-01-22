@@ -7,13 +7,16 @@
       <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Varela+Round'>
       <link rel="stylesheet" href="css/style.css">
    </head>
-   <body ng-app="stream" ng-controller="streamController">
-   
-          <h2>Status</h2>
-        <label>Online</label>
-        <input  type="checkbox" ng-model="Filter.status.online" ng-true-value="online"  ng-false-value="!online" />&nbsp;
-        <label>Offline</label>
-        <input  type="checkbox" ng-model="Filter.status.offline" ng-true-value="offline"  ng-false-value="!offline" />&nbsp;
+   <body >
+       <h3>Categories</h3>
+		 <label>
+            <input type="checkbox" ng-model="main.filter['online']" />
+            {{ online }}
+        </label>
+		 <label>
+            <input type="checkbox" ng-model="main.filter['offline']" />
+            {{ offline }}
+        </label>
       <form id="twitchSearch" class="formInline">
          <input  placeholder="Search for streams." type="text" id="searchBar">
          <button id="searchButton" type="submit"><span class="fa fa-search"></span></button>
