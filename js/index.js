@@ -21,18 +21,18 @@ function containsObject(obj, list) {
 function onlineOnly() {
     $('.online').show();
     $('.offline').hide();
-	$('#onlineButton').addClass('active');
+    $('#onlineButton').addClass('active');
     $('#offlineButton').removeClass('active');
-	$('#allButton').removeClass('active');
+    $('#allButton').removeClass('active');
     display = 'online';
 }
 
 function offlineOnly() {
     $('.offline').show();
     $('.online').hide();
-	$('#onlineButton').removeClass('active');
+    $('#onlineButton').removeClass('active');
     $('#offlineButton').addClass('active');
-	$('#allButton').removeClass('active');
+    $('#allButton').removeClass('active');
     display = 'offline';
 }
 
@@ -41,25 +41,21 @@ function showAll() {
     $('.offline').show();
     $('#onlineButton').removeClass('active');
     $('#offlineButton').removeClass('active');
-	$('#allButton').addClass('active');
-	display = 'all';
+    $('#allButton').addClass('active');
+    display = 'all';
 }
-
-
 app.controller('streamController', function($scope) {
     $scope.Streams = [];
-	$scope.Condensed = false; 
-	
-	// change streamNames to the streams names in $scope.Streams and redo everything
-	
-	$scope.refresh = function(){
-		streamNames = [];	
-		for(var i=0; i<$scope.Streams.length; i++){
-			streamNames.push($scope.Streams[i].name);
-		}
-		$scope.Streams = [];
-		getStreamData();
-	}
+    $scope.Condensed = false;
+    // change streamNames to the streams names in $scope.Streams and redo everything
+    $scope.refresh = function() {
+        streamNames = [];
+        for (var i = 0; i < $scope.Streams.length; i++) {
+            streamNames.push($scope.Streams[i].name);
+        }
+        $scope.Streams = [];
+        getStreamData();
+    }
     $('#twitchSearch').submit(function(e) {
         e.preventDefault();
         var searchValue = $("#searchBar").val();
@@ -71,14 +67,14 @@ app.controller('streamController', function($scope) {
             },
             success: function(data) {
                 displayStreams(searchValue, data);
-				
             }
         });
     });
-	$scope.remove = function(item) { 
-		var index = $scope.Streams.indexOf(item);
-		$scope.Streams.splice(index, 1);     
-	}
+    $scope.remove = function(item) {
+        var index = $scope.Streams.indexOf(item);
+        $scope.Streams.splice(index, 1);
+    }
+
     function displayStreams(name, data) {
         if (data.stream) {
             var obj = {
@@ -104,7 +100,7 @@ app.controller('streamController', function($scope) {
                     offlineOnly();
                 }
             } else {
-               alert("Stream is already added.");
+                alert("Stream is already added.");
             }
         } else {
             getOfflineStreamData(name);
@@ -140,7 +136,7 @@ app.controller('streamController', function($scope) {
                             onlineOnly();
                         }
                     } else {
-                       alert("Stream is already added.");
+                        alert("Stream is already added.");
                     }
                 } else {
                     alert("Streamer not found. Search again.");

@@ -2,117 +2,112 @@
  body{
      background: #6441A4 ;
      font-family: 'Roboto Mono', monospace;
-	 margin: 0; 
+     margin: 0;
 }
  a{
      text-decoration: none;
 }
-button:focus {outline:0;}
+ button:focus {
+    outline:0;
+}
 /* Nav */
-
-nav {
-  color: white;
-  background: black;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  width: 100%;
-  font-family: sans-serif;
-  font-family: "Circle", Verdana, Tahoma;
-  text-align: center;
-  vertical-align: middle;
-  margin: 0; 
+ nav {
+     color: white;
+     background: black;
+     padding-bottom: 10px;
+     padding-top: 10px;
+     width: 100%;
+     font-family: sans-serif;
+     font-family: "Circle", Verdana, Tahoma;
+     text-align: center;
+     vertical-align: middle;
+     margin: 0;
 }
-
-#nic {
-  color: #40cc33;
-  text-decoration: none;
+ #nic {
+     color: #40cc33;
+     text-decoration: none;
 }
-
-#nic:hover {
-  color: #4a9943;
+ #nic:hover {
+     color: #4a9943;
 }
-
 /* Refresh Button */
-#refresh{
-	background: white; 
-	color: black; 
-	border: none; 
-	height: 25px; 
-	width: 100%;
-	margin-bottom: 20px; 
+ #refresh{
+     background: white;
+     color: black;
+     border: none;
+     height: 25px;
+     width: 100%;
+     margin-bottom: 20px;
 }
-#refresh:hover{
-	background: #432B6E;
-	color: white; 
+ #refresh:hover{
+     background: #432B6E;
+     color: white;
 }
-
 /* Search bar */
-.formInline{
-	display: flex;
-    align-items: center;
-    justify-content: center;
-	margin-bottom: 10px;
+ .formInline{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin-bottom: 10px;
 }
-#searchBar{
-	width: 400px; 
-	height: 25px; 
+ #searchBar{
+     width: 400px;
+     height: 25px;
 }
-#searchButton{
-	border: none; 
-	height: 29px;  
-	width: 40px; 
-	background: white; 
-	color: black; 
+ #searchButton{
+     border: none;
+     height: 29px;
+     width: 40px;
+     background: white;
+     color: black;
 }
-#searchButton:hover{
-	background: #432B6E;
-	color: white; 
+ #searchButton:hover{
+     background: #432B6E;
+     color: white;
 }
 /* Status Buttons */
-#statusButtonContainer{
-	margin: 0 auto; 
-	text-align: center; 
-	margin-bottom: 10px; 
+ #statusButtonContainer{
+     margin: 0 auto;
+     text-align: center;
+     margin-bottom: 10px;
 }
-.statusButtons{
-	background: #432B6E;
-	color: white; 
-	border: none; 
-	font-size: 14px; 
-	padding: 5px; 
-	opacity: .6; 
-	width: 100px; 
+ .statusButtons{
+     background: #432B6E;
+     color: white;
+     border: none;
+     font-size: 14px;
+     padding: 5px;
+     opacity: .6;
+     width: 100px;
 }
-.active{
-	opacity: 1; 
+ .active{
+     opacity: 1;
 }
-#allButton{
-	border-top: 3px solid white;
+ #allButton{
+     border-top: 3px solid white;
 }
-#onlineButton{
-	border-top: 3px solid #44CF59;
+ #onlineButton{
+     border-top: 3px solid #44CF59;
 }
-#offlineButton{
-	border-top: 3px solid #CF4444;
+ #offlineButton{
+     border-top: 3px solid #CF4444;
 }
-
 /* Preview Toggle */
-
-#condenseButton{
-	margin: 0 auto; 
-	text-align: center; 
-	display: block; 
-	background: white; 
-	border: 2px solid  #432B6E; 
-	width: 200px; 
-	color: black; 
-	border-radius: 30px 30px 0px 0px;
-	height: 30px; 
-	font-size: 14px; 
+ #condenseButton{
+     margin: 0 auto;
+     text-align: center;
+     display: block;
+     background: white;
+     border: 2px solid #432B6E;
+     width: 200px;
+     color: black;
+     border-radius: 30px 30px 0px 0px;
+     height: 30px;
+     font-size: 14px;
 }
-#condenseButton:hover{
-	background: #432B6E;
-	color: white; 
+ #condenseButton:hover{
+     background: #432B6E;
+     color: white;
 }
 /* twitch streamer container*/
  .container{
@@ -122,8 +117,8 @@ nav {
      color: #6441A4;
      font-size: .9em;
      background: white;
-	 text-align: center;
-	 margin: 0 auto; 
+     text-align: center;
+     margin: 0 auto;
 }
  .online{
      border:4px solid #8CE196;
@@ -141,15 +136,15 @@ nav {
 }
 /* twitch streamer inside container */
 /* top part*/
-.delete{
-	float: right; 
-	color: #CF1515;
-	border: 1px solid #CF1515; 
-	background: #D99898; 
+ .delete{
+     float: right;
+     color: #CF1515;
+     border: 1px solid #CF1515;
+     background: #D99898;
 }
-.delete:hover{
-	background: #CF1515;
-	color: white; 
+ .delete:hover{
+     background: #CF1515;
+     color: white;
 }
  .logo{
      max-width:80px;
@@ -173,36 +168,34 @@ nav {
  .preview{
      width: 660px;
 }
-
-
 /* Media Queries */
-@media only screen and (max-width: 700px) {
-  .container{
-	width: 95%; 
-  }
-  .preview{
-	  width: 500px; 
-  }
-  
+ @media only screen and (max-width: 700px) {
+     .container{
+         width: 95%;
+    }
+     .preview{
+         width: 100%;
+    }
 }
-
-@media only screen and (max-width: 500px) {
-
-  .preview{
-	 display: none; 
-  }
-  #searchButton{
-	height: 30px;  
-	width: 100%; 
-}
-.formInline{
-	display: block; 
-}
-  #condenseButton{
-	width: 80%; 
-  }
-  .statusButtons{
-	width: 90%;
-	margin-bottom: 5px; 
-  }
+ @media only screen and (max-width: 500px) {
+     .preview{
+         display: none;
+    }
+     #searchButton{
+         height: 30px;
+         width: 100%;
+    }
+     #searchBar{
+         width: 100%;
+    }
+     .formInline{
+         display: block;
+    }
+     #condenseButton{
+         width: 80%;
+    }
+     .statusButtons{
+         width: 90%;
+         margin-bottom: 5px;
+    }
 }
