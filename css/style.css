@@ -2,11 +2,36 @@
  body{
      background: #6441A4 ;
      font-family: 'Roboto Mono', monospace;
+	 margin: 0; 
 }
  a{
      text-decoration: none;
 }
 button:focus {outline:0;}
+/* Nav */
+
+nav {
+  color: white;
+  background: black;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  width: 100%;
+  font-family: sans-serif;
+  font-family: "Circle", Verdana, Tahoma;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0; 
+}
+
+#nic {
+  color: #40cc33;
+  text-decoration: none;
+}
+
+#nic:hover {
+  color: #4a9943;
+}
+
 /* Refresh Button */
 #refresh{
 	background: white; 
