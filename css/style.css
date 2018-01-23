@@ -7,6 +7,18 @@
      text-decoration: none;
 }
 button:focus {outline:0;}
+/* Refresh Button */
+#refresh{
+	background: white; 
+	color: black; 
+	border: none; 
+	height: 25px; 
+}
+#refresh:hover{
+	background: #432B6E;
+	color: white; 
+}
+
 /* Search bar */
 .formInline{
 	display: flex;

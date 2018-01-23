@@ -1,4 +1,3 @@
-// Allow users to see a condensed view with ng-repeat that will not show the preview or the small details
 // Refresh the streams every 5 minutes? Reload button as well.
 var streamNames = ["Jerma985", "BabaYetu_", "TrumpSC"];
 var app = angular.module('stream', []);
@@ -51,6 +50,20 @@ app.controller('streamController', function($scope) {
     $scope.Streams = [];
 	$scope.Condensed = false; 
 	
+	// change streamNames to the streams names in $scope.Streams and redo everything
+	
+	$scope.refresh = function(){
+		console.log("hey"); 
+		console.log(streamNames); 
+		streamNames = [];
+		
+		for(var i=0; i<$scope.Streams.length; i++){
+			streamNames.push($scope.Streams[i].name);
+		}
+		console.log(streamNames)
+		$scope.Streams = [];
+		getStreamData();
+	}
     $('#twitchSearch').submit(function(e) {
         e.preventDefault();
         var searchValue = $("#searchBar").val();
