@@ -1,5 +1,5 @@
 // The initial streams shown to the user.
-var streamNames = ["Jerma985", "BabaYetu_", "TrumpSC"];
+var streamNames = ["FreeCodeCamp", "BobRoss"];
 // The set up of Angular
 var app = angular.module('stream', []);
 // This variable keeps track of which streams we're showing the user. By default we show them all streams. Other settings are 'online', and 'offline' which respectively limit the streams to those two
