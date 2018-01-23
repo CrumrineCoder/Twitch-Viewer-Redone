@@ -26,7 +26,7 @@ This is a front end project built as part of FreeCodeCamp's cirriculum. The webs
 * [jQuery](https://jquery.com/) - Used to change HTML classes and other little things  that I didn't need to rewrite functions for. 
 * [FontAwesome] (http://fontawesome.io/) - Used for various icons. Love these guys. 
 
-## Authors
+##  Authors
 
 * **Nicolas Crumrine** - *EVERYTHING* - [CrumrineCoder](https://github.com/CrumrineCoder)
 
