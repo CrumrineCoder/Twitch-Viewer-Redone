@@ -53,14 +53,10 @@ app.controller('streamController', function($scope) {
 	// change streamNames to the streams names in $scope.Streams and redo everything
 	
 	$scope.refresh = function(){
-		console.log("hey"); 
-		console.log(streamNames); 
-		streamNames = [];
-		
+		streamNames = [];	
 		for(var i=0; i<$scope.Streams.length; i++){
 			streamNames.push($scope.Streams[i].name);
 		}
-		console.log(streamNames)
 		$scope.Streams = [];
 		getStreamData();
 	}

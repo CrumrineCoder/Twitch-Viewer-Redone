@@ -38,6 +38,8 @@ nav {
 	color: black; 
 	border: none; 
 	height: 25px; 
+	width: 100%;
+	margin-bottom: 20px; 
 }
 #refresh:hover{
 	background: #432B6E;
@@ -170,4 +172,37 @@ nav {
 }
  .preview{
      width: 660px;
+}
+
+
+/* Media Queries */
+@media only screen and (max-width: 700px) {
+  .container{
+	width: 95%; 
+  }
+  .preview{
+	  width: 500px; 
+  }
+  
+}
+
+@media only screen and (max-width: 500px) {
+
+  .preview{
+	 display: none; 
+  }
+  #searchButton{
+	height: 30px;  
+	width: 100%; 
+}
+.formInline{
+	display: block; 
+}
+  #condenseButton{
+	width: 80%; 
+  }
+  .statusButtons{
+	width: 90%;
+	margin-bottom: 5px; 
+  }
 }
