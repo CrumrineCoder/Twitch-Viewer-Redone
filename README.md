@@ -26,7 +26,7 @@ This was built as part of FreeCodeCamp's frontend curriculum. I revisited this p
 * [Secondary Twitch.tv API](https://wind-bow.glitch.me/) - The api used to get information of offline streams. 
 * [Angular](https://angularjs.org/) - Used to display data.
 * [jQuery](https://jquery.com/) - Used to change HTML classes and other little things  that I didn't need to rewrite functions for. 
-* [FontAwesome] (http://fontawesome.io/) - Used for various icons. Love these guys. 
+* [FontAwesome] (https://fontawesome.com/) - Used for various icons. Love these guys. 
 
 ##  Authors
 
