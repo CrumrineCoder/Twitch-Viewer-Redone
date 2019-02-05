@@ -137,7 +137,8 @@ app.controller('streamController', function($scope) {
             }
 		// If the streamer isn't streaming. We do this because the Official Twitch API doesn't give that much data on offline streams, but the other API doesn't give as much on online streams so I have to use both. 
         } else {
-            getOfflineStreamData(name);
+            alert("Stream is offline, sorry!");
+        //    getOfflineStreamData(name);
         }
     }
    
