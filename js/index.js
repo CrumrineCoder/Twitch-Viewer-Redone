@@ -15,7 +15,7 @@ function compare(a, b) {
 // Checks if two streams are the same for the purpose of no doubling up on streamers.
 function containsObject(obj, list) {
     for (var i = 0; i < list.length; i++) {
-        if (list[i].name === obj.name) {
+        if (list[i].user === obj.user) {
             return true;
         } else {}
     }
@@ -86,7 +86,7 @@ app.controller('streamController', function($scope) {
     }
 	// We get the initial data from the official Twitch API
 	 function getStreamData() {
-        streamNames.forEach(function(data, i) {
+   /*     streamNames.forEach(function(data, i) {
             $.ajax({
                 type: "GET",
                 url: 'https://api.twitch.tv/kraken/streams/' + streamNames[i],
@@ -97,12 +97,107 @@ app.controller('streamController', function($scope) {
                     displayStreams(streamNames[i], data);
                 }
             });
+        }); */
+        $.ajax({
+            type: "GET",
+            url:  'https://api.twitch.tv/helix/streams?first=3',
+            headers: {
+                "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
+            },
+            success: function(data) {
+                displayInitialStreams(data.data);
+            }
+        }); 
+
+    }
+
+    function getGameName(obj, callback){
+        $.ajax({
+            type: "GET",
+            url:  'https://api.twitch.tv/helix/games?id='+obj.game,
+            headers: {
+                "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
+            },
+            success: function(data) {
+                obj.game = data.data[0].name;
+                getFollowers(obj);
+            }
+        }); 
+    }
+
+    function getFollowers(obj){
+        $.ajax({
+            type: "GET",
+            url:  'https://api.twitch.tv/helix/users/follows?to_id='+obj.user,
+            headers: {
+                "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
+            },
+            success: function(data) {
+                obj.followers = data.total;
+                getUserData(obj);
+            }
+        }); 
+    }
+
+    function getUserData(obj, callback){
+        $.ajax({
+            type: "GET",
+            url:  'https://api.twitch.tv/helix/users?id='+obj.user,
+            headers: {
+                "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
+            },
+            success: function(data) {
+                obj.user = data.data[0].display_name;
+                obj.profile = data.data[0].profile_image_url; 
+                obj.offline = data.data[0].offline_image_url; 
+                obj.stream = "https://www.twitch.tv/" + data.data[0].display_name;
+
+                var temp = obj.profile.replace("{width}x{height}", "1920x1080")
+                obj.profile = temp;
+
+               
+
+                apply(obj);
+            }
+        }); 
+    }
+
+  
+
+    function apply(obj){
+        $scope.$apply(function() {
+            $scope.Streams.push(obj);
+            $scope.Streams.sort(compare);
         });
     }
+
+    function displayInitialStreams(data){
+        if(data){
+            for(var i=0; i<data.length; i++){
+                var obj = {
+                    game: data[i].game_id,
+                    viewers: data[i].viewer_count,
+                    language: data[i].language,
+                    user: data[i].user_id,
+                    status: "online",
+                    preview: data[i].thumbnail_url,
+                    title: data[i].title
+                };
+
+                var temp = obj.preview.replace("{width}x{height}", "1920x1080")
+                obj.preview = temp;
+
+                getGameName(obj);
+            }
+            console.log(obj);
+        }
+    }
+
 	// get the initial data
 	 getStreamData();
 	 // Organize the data into objects.
     function displayStreams(name, data) {
+        console.log(data);
 		// If they are currently streaming
         if (data.stream) {
 			// Create an object of the data.
@@ -110,9 +205,9 @@ app.controller('streamController', function($scope) {
                 game: data.stream.game,
                 viewers: data.stream.viewers,
                 language: data.stream.channel.broadcaster_language,
-                name: data.stream.channel.display_name,
+                user: data.stream.channel.display_name,
                 followers: data.stream.channel.followers,
-                logo: data.stream.channel.logo,
+                profile: data.stream.channel.logo,
                 mature: data.stream.channel.mature,
                 status: "online",
                 url: data.stream.channel.url,
@@ -133,6 +228,9 @@ app.controller('streamController', function($scope) {
                 }
 			// Tell the user the stream is already added
             } else {
+                console.log(obj);
+                console.log( $scope.Streams);
+                console.log(containsObject(obj, $scope.Streams));
                 alert("Stream is already added.");
             }
 		// If the streamer isn't streaming. We do this because the Official Twitch API doesn't give that much data on offline streams, but the other API doesn't give as much on online streams so I have to use both. 
