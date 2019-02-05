@@ -105,13 +105,15 @@ app.controller('streamController', function ($scope) {
                      }
                  });
              }); */
+             //url: 'https://api.twitch.tv/helix/streams?first=20&game_id=509660',
         $.ajax({
             type: "GET",
-            url: 'https://api.twitch.tv/helix/streams?first=3',
+            url: 'https://api.twitch.tv/helix/streams?first=3&game_id=509660',
             headers: {
                 "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
             },
             success: function (data) {
+                console.log(data);
                 displayInitialStreams(data.data);
             }
         });
