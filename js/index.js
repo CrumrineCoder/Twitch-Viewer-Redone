@@ -64,7 +64,6 @@ app.controller('streamController', function ($scope) {
         if (window.isButtonXAllowed) {
             window.isButtonXAllowed = false;
             streamNames = [];
-            //   console.log($scope.Streams);
             for (var i = 0; i < $scope.Streams.length; i++) {
                 streamNames.push({ user: $scope.Streams[i].user, status: $scope.Streams[i].status });
             }
@@ -192,7 +191,6 @@ app.controller('streamController', function ($scope) {
     }
 
     function getFollowers(obj) {
-        console.log(obj);
         $.ajax({
             type: "GET",
             url: 'https://api.twitch.tv/helix/users/follows?to_id=' + obj.user_id,
