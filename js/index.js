@@ -75,8 +75,11 @@ app.controller('streamController', function($scope) {
                 "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
             },
             success: function(data) {
-                console.log(data);
-                displayStreams(searchValue, data);
+                if(data.data.length < 1){
+                    alert("Streamer doesn't exist, sorry!")
+                } else{
+                  displayStreams(searchValue, data);
+                }
             },
             error: function(data){
                 alert("Stream doesn't exist, sorry!")
@@ -197,9 +200,27 @@ app.controller('streamController', function($scope) {
 	 getStreamData();
 	 // Organize the data into objects.
     function displayStreams(name, data) {
-        console.log(data);
+        console.log(data.data[0]);
 		// If they are currently streaming
-        if (data.data) {
+     
+           $.ajax({
+                type: "GET",
+                url: 'https://api.twitch.tv/helix/streams?user_login=' + data.data[0].display_name,
+                headers: {
+                    "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
+                },
+                success: function(data) {
+                    if(data.data.length < 1){
+                        alert("Stream is offline");
+                    } else{
+                        alert("Stream is online");
+                    }
+                //    displayStreams(searchValue, data);
+                },
+                error: function(data){
+                    alert("Stream doesn't exist, sorry!")
+                }
+            }); 
 			// Create an object of the data.
       /*      var obj = {
                 game: data.stream.game,
@@ -234,10 +255,6 @@ app.controller('streamController', function($scope) {
                 alert("Stream is already added.");
             }*/
 		// If the streamer isn't streaming. We do this because the Official Twitch API doesn't give that much data on offline streams, but the other API doesn't give as much on online streams so I have to use both. 
-        } else {
-            alert("Stream doesn't exist, sorry!");
-        //    getOfflineStreamData(name);
-        }
     }
    
 	// Get the data for offline streams. 
