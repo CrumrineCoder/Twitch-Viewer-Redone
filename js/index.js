@@ -157,9 +157,11 @@ app.controller('streamController', function ($scope) {
     }
     // We get the initial data from the official Twitch API
     function getStreamData() {
+     //   streamNames
         $.ajax({
             type: "GET",
-            url: 'https://api.twitch.tv/helix/streams?first=3&game_id=509660',
+         //   url: 'https://api.twitch.tv/helix/streams?first=3&game_id=509660',
+               url: 'https://api.twitch.tv/helix/streams?first=3&game_id=509670',
             headers: {
                 "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
             },
