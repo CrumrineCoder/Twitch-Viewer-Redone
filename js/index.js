@@ -58,11 +58,117 @@ app.controller('streamController', function ($scope) {
     // Change streanNames to those of the current Streamers and run through the entire process again to renew the data. 
     $scope.refresh = function () {
         streamNames = [];
+        //   console.log($scope.Streams);
         for (var i = 0; i < $scope.Streams.length; i++) {
-            streamNames.push($scope.Streams[i].name);
+            streamNames.push({ user: $scope.Streams[i].user, status: $scope.Streams[i].status });
         }
-        $scope.Streams = [];
-        getStreamData();
+        console.log($scope.Streams);
+        console.log(streamNames);
+        //  $scope.Streams = [];
+        //  getStreamData();
+        function update(obj) {
+            console.log(obj);
+            var result = $scope.Streams.filter(object => {
+                return object.user_id === obj.user_id
+            });
+            var index = $scope.Streams.indexOf(result);
+            result[0].game = obj.game;
+            result[0].viewers = obj.viewers;
+            result[0].preview = obj.preview;
+            result[0].title = obj.title;
+            console.log(result);
+            if (index !== -1) {
+                $scope.$apply(function () {
+                    $scope.Streams[index] = result[0];
+                });
+            }
+        }
+
+        for (var i = 0; i < streamNames.length; i++) {
+            if (streamNames[i].status == "online") {
+                $.ajax({
+                    type: "GET",
+                    url: 'https://api.twitch.tv/helix/streams?user_login=' + streamNames[i].user,
+                    headers: {
+                        "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        if (data.data.length > 0) {
+                            var obj = {
+                                game: data.data[0].game_id,
+                                viewers: data.data[0].viewer_count,
+                                user_id: data.data[0].user_id,
+                                preview: data.data[0].thumbnail_url,
+                                title: data.data[0].title
+                            }
+                            update(obj);
+                        }
+                    }/* function (data) {
+                        console.log($scope.Streams);
+                        console.log(i);
+                        var temp = $scope.Streams[i];
+                        console.log(temp); */
+                    /*
+                         
+                                    };
+                    
+                                    var temp = obj.preview.replace("{width}x{height}", "1920x1080")
+                                    obj.preview = temp;
+                                            if (data.data.length < 1) {
+                                                if (containsObject(storage.display_name, $scope.Streams)) {
+                                                    alert("Stream is already shown.")
+                                                } else {
+                                                    //   alert("Stream is offline");
+                                                    var obj = {
+                                                        desc: storage.description,
+                                                        user: storage.id,
+                                                        status: "offline",
+                                                        profile: storage.profile_image_url,
+                                                        offline: storage.offline_image_url,
+                                                        views: storage.view_count
+                                                    }
+                            
+                                                    var temp = obj.profile.replace("{width}x{height}", "1920x1080")
+                                                    obj.profile = temp;
+                            
+                                                    getFollowers(obj);
+                                                }
+                                            } else {
+                                                if (containsObject(data.data[0].user_name, $scope.Streams)) {
+                                                    alert("Stream is already shown.")
+                                                } else {
+                                                    //    alert("Stream is online");
+                                                    displayInitialStreams(data.data);
+                                                }
+                                            } */
+                    //    displayStreams(searchValue, data);
+                    //   },
+                    ,
+                    error: function (data) {
+                        alert("Stream doesn't exist, sorry!")
+                    }
+                });
+            }
+            /*    $.ajax({
+                    type: "GET",
+                    url: 'https://api.twitch.tv/helix/users?login=' + streamNames[i].user,
+                    headers: {
+                        "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        if (data.data.length < 1) {
+                            alert("Streamer doesn't exist, sorry!")
+                        } else {
+                            displayStreams(streamNames[i], data);
+                        }
+                    },
+                    error: function (data) {
+                        alert("Stream doesn't exist, sorry!")
+                    }
+                }); */
+        }
     }
     // On submission of the search form, add the streamer if found. 
     $('#twitchSearch').submit(function (e) {
@@ -105,7 +211,7 @@ app.controller('streamController', function ($scope) {
                      }
                  });
              }); */
-             //url: 'https://api.twitch.tv/helix/streams?first=20&game_id=509660',
+        //url: 'https://api.twitch.tv/helix/streams?first=20&game_id=509660',
         $.ajax({
             type: "GET",
             url: 'https://api.twitch.tv/helix/streams?first=3&game_id=509660',
@@ -113,7 +219,6 @@ app.controller('streamController', function ($scope) {
                 "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
             },
             success: function (data) {
-                console.log(data);
                 displayInitialStreams(data.data);
             }
         });
@@ -137,7 +242,7 @@ app.controller('streamController', function ($scope) {
     function getFollowers(obj) {
         $.ajax({
             type: "GET",
-            url: 'https://api.twitch.tv/helix/users/follows?to_id=' + obj.user,
+            url: 'https://api.twitch.tv/helix/users/follows?to_id=' + obj.user_id,
             headers: {
                 "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
             },
@@ -151,7 +256,7 @@ app.controller('streamController', function ($scope) {
     function getUserData(obj, callback) {
         $.ajax({
             type: "GET",
-            url: 'https://api.twitch.tv/helix/users?id=' + obj.user,
+            url: 'https://api.twitch.tv/helix/users?id=' + obj.user_id,
             headers: {
                 "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
             },
@@ -183,7 +288,7 @@ app.controller('streamController', function ($scope) {
                     game: data[i].game_id,
                     viewers: data[i].viewer_count,
                     language: data[i].language,
-                    user: data[i].user_id,
+                    user_id: data[i].user_id,
                     status: "online",
                     preview: data[i].thumbnail_url,
                     title: data[i].title
@@ -215,7 +320,7 @@ app.controller('streamController', function ($scope) {
                     if (containsObject(storage.display_name, $scope.Streams)) {
                         alert("Stream is already shown.")
                     } else {
-                        alert("Stream is offline");
+                        //   alert("Stream is offline");
                         var obj = {
                             desc: storage.description,
                             user: storage.id,
@@ -234,7 +339,7 @@ app.controller('streamController', function ($scope) {
                     if (containsObject(data.data[0].user_name, $scope.Streams)) {
                         alert("Stream is already shown.")
                     } else {
-                        alert("Stream is online");
+                        //    alert("Stream is online");
                         displayInitialStreams(data.data);
                     }
                 }
