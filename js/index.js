@@ -70,12 +70,16 @@ app.controller('streamController', function($scope) {
         var searchValue = $("#searchBar").val();
         $.ajax({
             type: "GET",
-            url: 'https://api.twitch.tv/kraken/streams/' + searchValue,
+            url: 'https://api.twitch.tv/helix/users?login=' + searchValue,
             headers: {
                 "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
             },
             success: function(data) {
+                console.log(data);
                 displayStreams(searchValue, data);
+            },
+            error: function(data){
+                alert("Stream doesn't exist, sorry!")
             }
         });
     });
@@ -155,14 +159,10 @@ app.controller('streamController', function($scope) {
                 var temp = obj.profile.replace("{width}x{height}", "1920x1080")
                 obj.profile = temp;
 
-               
-
                 apply(obj);
             }
         }); 
     }
-
-  
 
     function apply(obj){
         $scope.$apply(function() {
@@ -199,9 +199,9 @@ app.controller('streamController', function($scope) {
     function displayStreams(name, data) {
         console.log(data);
 		// If they are currently streaming
-        if (data.stream) {
+        if (data.data) {
 			// Create an object of the data.
-            var obj = {
+      /*      var obj = {
                 game: data.stream.game,
                 viewers: data.stream.viewers,
                 language: data.stream.channel.broadcaster_language,
@@ -213,7 +213,7 @@ app.controller('streamController', function($scope) {
                 url: data.stream.channel.url,
                 preview: data.stream.preview.large,
                 title: data.stream.channel.status
-            };
+            }; 
 			// If the stream hasn't already been put into the Streams array
             if (!containsObject(obj, $scope.Streams)) {
 				// Add the obj to the streams array and resort it
@@ -232,10 +232,10 @@ app.controller('streamController', function($scope) {
                 console.log( $scope.Streams);
                 console.log(containsObject(obj, $scope.Streams));
                 alert("Stream is already added.");
-            }
+            }*/
 		// If the streamer isn't streaming. We do this because the Official Twitch API doesn't give that much data on offline streams, but the other API doesn't give as much on online streams so I have to use both. 
         } else {
-            alert("Stream is offline, sorry!");
+            alert("Stream doesn't exist, sorry!");
         //    getOfflineStreamData(name);
         }
     }

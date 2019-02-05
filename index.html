@@ -30,7 +30,7 @@
 		 	<button class="delete fa fa-times" ng-click="remove(Stream)"></button>
             <a href="{{Stream.url}}" target="_blank">
 				<img class="logo" ng-src="{{Stream.profile}}"></img>  
-				<span class="summary"> {{Stream.user}} <span ng-show="{{Stream.status == 'online'}}">is</span> <span ng-hide="{{Stream.status == 'online'}}">was</span> playing {{Stream.game}} <span ng-show="{{Stream.status == 'online'}}">for {{Stream.viewers}} viewers</span> </span>
+				<span class="summary"> {{Stream.user}} <span ng-show="{{Stream.status == 'online'}}">is playing {{Stream.game}}</span> <span ng-hide="{{Stream.status == 'online'}}">was</span> <span ng-show="{{Stream.status == 'online'}}">for {{Stream.viewers}} viewers</span> </span>
 				<p class="title">{{Stream.title}}</p>
 				
 				<hr>
