@@ -236,6 +236,11 @@ app.controller('streamController', function ($scope) {
             $scope.Streams.push(obj);
             $scope.Streams.sort(compare);
         });
+        if(display=="online"){
+            onlineOnly();
+        } else if(display=="offline"){
+            offlineOnly();
+        }
     }
 
     function displayInitialStreams(data) {
@@ -297,6 +302,10 @@ app.controller('streamController', function ($scope) {
                     } else {
                         alert("Stream is online");
                         displayInitialStreams(data.data);
+                        if (display == 'online') {
+                            alert("Stream added, but only are showing Online streams so it is not currently visible");
+                            onlineOnly();
+                        }
                     }
                 }
             },
