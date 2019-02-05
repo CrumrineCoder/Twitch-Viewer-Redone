@@ -30,17 +30,23 @@
 		 	<button class="delete fa fa-times" ng-click="remove(Stream)"></button>
             <a href="{{Stream.url}}" target="_blank">
 				<img class="logo" ng-src="{{Stream.profile}}"></img>  
-				<span class="summary"> {{Stream.user}} <span ng-show="{{Stream.status == 'online'}}">is playing {{Stream.game}}</span> <span ng-hide="{{Stream.status == 'online'}}">was</span> <span ng-show="{{Stream.status == 'online'}}">for {{Stream.viewers}} viewers</span> </span>
-				<p class="title">{{Stream.title}}</p>
-				
+				<span class="summary"> {{Stream.user}} <span ng-show="{{Stream.status == 'online'}}">is playing {{Stream.game}} for {{Stream.viewers}} viewers </span>
+				<p ng-show="{{Stream.status == 'online'}}" class="title">{{Stream.title}}</p>
+				<p ng-hide="{{Stream.status == 'online'}}">{{Stream.desc}}</p> 
 				<hr>
 	   
-				<div class="smallDetails"> 
+				<div ng-show="{{Stream.status == 'online'}}" class="smallDetails"> 
 					Followers: <span class="followers"> {{Stream.followers}} </span> 
 					Language: <span class="language"> {{Stream.language}}</span> 
 				</div> 
+
+				<div ng-hide="{{Stream.status == 'online'}}" class="smallDetails"> 
+					Followers: <span class="followers"> {{Stream.followers}} </span> 
+					View Count: <span class="language"> {{Stream.views}}</span> 
+				</div> 
 				
-				<img ng-hide="Condensed" class="preview" ng-src="{{Stream.preview}}"> </img>
+				<img ng-show="{{Stream.status == 'online'}}" ng-hide="Condensed" class="preview" ng-src="{{Stream.preview}}"> </img>
+				<img ng-hide="{{Stream.status == 'online'}} || Condensed" class="preview" ng-src="{{Stream.offline}}"> </img>
 			</a>
 		</div>
 	</span>

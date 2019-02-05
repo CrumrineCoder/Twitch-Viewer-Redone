@@ -15,7 +15,7 @@ function compare(a, b) {
 // Checks if two streams are the same for the purpose of no doubling up on streamers.
 function containsObject(obj, list) {
     for (var i = 0; i < list.length; i++) {
-        if (list[i].user === obj.user) {
+        if (list[i].user === obj) {
             return true;
         } else { }
     }
@@ -192,7 +192,6 @@ app.controller('streamController', function ($scope) {
 
                 getGameName(obj);
             }
-            console.log(obj);
         }
     }
 
@@ -200,8 +199,6 @@ app.controller('streamController', function ($scope) {
     getStreamData();
     // Organize the data into objects.
     function displayStreams(name, data) {
-        console.log(data.data[0]);
-
         var storage = data.data[0];
         // If they are currently streaming
 
@@ -213,22 +210,31 @@ app.controller('streamController', function ($scope) {
             },
             success: function (data) {
                 if (data.data.length < 1) {
-                    alert("Stream is offline");
-                    var obj = {
-                        desc: storage.description,
-                        user: storage.id,
-                        status: "offline",
-                        profile: storage.profile_image_url,
-                        offline: storage.offline_image_url,
-                        views: storage.view_count
+                    if (containsObject(storage.display_name, $scope.Streams)) {
+                        alert("Stream is already shown.")
+                    } else {
+                        alert("Stream is offline");
+                        var obj = {
+                            desc: storage.description,
+                            user: storage.id,
+                            status: "offline",
+                            profile: storage.profile_image_url,
+                            offline: storage.offline_image_url,
+                            views: storage.view_count
+                        }
+
+                        var temp = obj.profile.replace("{width}x{height}", "1920x1080")
+                        obj.profile = temp;
+
+                        getFollowers(obj);
                     }
-
-                    var temp = obj.profile.replace("{width}x{height}", "1920x1080")
-                    obj.profile = temp;
-
-                    getFollowers(obj);
                 } else {
-                    alert("Stream is online");
+                    if (containsObject(data.data[0].user_name, $scope.Streams)) {
+                        alert("Stream is already shown.")
+                    } else {
+                        alert("Stream is online");
+                        displayInitialStreams(data.data);
+                    }
                 }
                 //    displayStreams(searchValue, data);
             },
