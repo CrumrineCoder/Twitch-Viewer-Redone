@@ -124,7 +124,7 @@ app.controller('streamController', function ($scope) {
             }
             alert("Streams refreshed!");
             setTimeout(function () { window.isButtonXAllowed = true }, 60000);
-        } else{
+        } else {
             alert("Please wait 1 minute before refreshing again (Twitch API won't allow for rapid refreshes, sorry!");
         }
     }
@@ -157,11 +157,11 @@ app.controller('streamController', function ($scope) {
     }
     // We get the initial data from the official Twitch API
     function getStreamData() {
-     //   streamNames
+        //   streamNames
         $.ajax({
             type: "GET",
-         //   url: 'https://api.twitch.tv/helix/streams?first=3&game_id=509660',
-               url: 'https://api.twitch.tv/helix/streams?first=3&game_id=509670',
+            //   url: 'https://api.twitch.tv/helix/streams?first=3&game_id=509660',
+            url: 'https://api.twitch.tv/helix/streams?first=3&game_id=509670',
             headers: {
                 "Client-ID": "qq6g00bkkiultjwkvpkewm5mkr44ock"
             },
@@ -238,9 +238,9 @@ app.controller('streamController', function ($scope) {
             $scope.Streams.push(obj);
             $scope.Streams.sort(compare);
         });
-        if(display=="online"){
+        if (display == "online") {
             onlineOnly();
-        } else if(display=="offline"){
+        } else if (display == "offline") {
             offlineOnly();
         }
     }
@@ -283,7 +283,7 @@ app.controller('streamController', function ($scope) {
                     if (containsObject(storage.display_name, $scope.Streams)) {
                         alert("Stream is already shown.")
                     } else {
-                         alert("Stream is offline");
+                        alert("Stream is offline");
                         var obj = {
                             desc: storage.description,
                             user_id: storage.id,
