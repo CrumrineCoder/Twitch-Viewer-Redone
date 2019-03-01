@@ -28,7 +28,7 @@
 	<span ng-repeat="Stream in Streams | orderBy: '!online'">
 		<div class="container" id="{{Stream.name}}" ng-class="{'online': Stream.status == 'online', 'offline': Stream.status == 'offline' }">
 		 	<button class="delete fa fa-times" ng-click="remove(Stream)"></button>
-            <a href="{{Stream.url}}" target="_blank">
+            <a href="{{Stream.stream}}" target="_blank">
 				<img class="logo" ng-src="{{Stream.profile}}"></img>  
 				<span class="summary"> {{Stream.user}} <span ng-show="{{Stream.status == 'online'}}">is streaming {{Stream.game}} for {{Stream.viewers}} viewers </span>
 				<p ng-show="{{Stream.status == 'online'}}" class="title">{{Stream.title}}</p>
